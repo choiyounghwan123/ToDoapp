@@ -11,6 +11,11 @@ class Service (
 ){
 
     fun findAll():List<ToDoDTO> = toDoRepository.findAll().map { it.toDTO() }
+
+    fun findById(id:Long):ToDoDTO? = toDoRepository.findById(id).orElse(null)?.toDTO()
+
+    fun deleteById(id: Long) = toDoRepository.deleteById(id)
+
     fun save(toDoDTO: ToDoDTO):ToDoDTO{
         val toDoEntity= ToDoEntity(
             id = toDoDTO.id?:0,
